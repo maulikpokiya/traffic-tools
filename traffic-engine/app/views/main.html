@@ -34,7 +34,10 @@
 	<script>
 	
 		var geoJsonOverlay;
-		var defaultLatLon = [38.8900, -77.0300];
+//		var defaultLatLon = [38.8900, -77.0300];
+//		changed for nyc
+//		var defaultLatLon = [40.7295,-73.9973];
+		var defaultLatLon = [${play.Play.configuration.getProperty("application.defaultLatLon")}];
 	
 	</script>
 
