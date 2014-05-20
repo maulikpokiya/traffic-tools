@@ -37,7 +37,10 @@
 
 	<script>
 	
-		var defaultLatLon = [10.3181373, 123.8956844];
+//		var defaultLatLon = [10.3181373, 123.8956844];
+//		changed for nyc
+//		var defaultLatLon = [40.7295, -73.9973];
+		var defaultLatLon = [${play.Play.configuration.getProperty("application.defaultLatLon")}];
 	
 	</script>
 

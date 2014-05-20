@@ -1,5 +1,7 @@
 
-var startLatLng = new L.LatLng(10.3181373, 123.8956844); 
+// var startLatLng = new L.LatLng(10.3181373, 123.8956844); 
+// changed for nyc
+var startLatLng = new L.LatLng(40.7295, -73.9973);
 
 var mbUrl = 'http://{s}.tiles.mapbox.com/v3/conveyal.map-jc4m5i21/{z}/{x}/{y}.png';
 
