@@ -38,8 +38,11 @@ public class TrafficEdge implements Serializable {
 	static final long serialVersionUID = 2;
 	
 	private final Integer id;
-	private final PlainStreetEdge edge;
-	private final String encodedGeom;
+//	changed for nyc
+//	private final PlainStreetEdge edge;
+//	private final String encodedGeom;
+	private final Edge edge;
+	private static String encodedGeom;
 	
 	private Double length = 0.0;
 	private Double tripLineLength = 0.0;
@@ -70,6 +73,29 @@ public class TrafficEdge implements Serializable {
 		}		
 	}
 	
+	// Added for nyc
+	public TrafficEdge(Edge originalPse, Graph graph, RoutingRequest options) {
+		this.id = graph.getIdForEdge(originalPse);
+		this.edge = originalPse;
+		this.encodedGeom = "";
+		try {
+			Coordinate[] offsetCoords = ocb.getOffsetCurve(originalPse.getGeometry().getCoordinates(), -0.00005);
+			if(offsetCoords != null) {
+				Geometry geom = geometryFactory.createLineString(offsetCoords);
+				org.opentripplanner.util.model.EncodedPolylineBean polylineBean =  PolylineEncoder.createEncodings(geom);
+				this.encodedGeom = polylineBean.getPoints();
+			}
+			for(Edge downstreamEdge : originalPse.getToVertex().getOutgoingStreetEdges()) {
+				if(downstreamEdge instanceof PlainStreetEdge && ((PlainStreetEdge)downstreamEdge).canTraverse(options)) {
+					downstreamEdges.add((PlainStreetEdge)downstreamEdge);
+					downstreamEdgeIds.add(graph.getIdForEdge((PlainStreetEdge)downstreamEdge));
+				}
+			}
+		}catch (Exception e) {
+			Logger.error("Error in TrafficEdge", e.toString());
+		}
+	}
+		
 	public Integer getId() {
 		return id;
 	}
