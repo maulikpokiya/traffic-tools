@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+	<bean id="osmBuilder"
+		class="org.opentripplanner.graph_builder.impl.osm.OpenStreetMapGraphBuilderImpl">
+		<!-- Use an OSM provider that will automatically download OSM data in a 
+			specified region -->
+		<property name="providers">
+			<list>
+				<bean
+					class="org.opentripplanner.openstreetmap.impl.RegionBasedOpenStreetMapProviderImpl">
+					<property name="regionsSource">
+						<!-- The region to collect OSM data -->
+						<bean
+							class="org.opentripplanner.openstreetmap.impl.FixedRegionSourceImpl">
+							<!-- Greater New York area -->
+							<property name="latFrom" value="40.53102" />
+							<property name="lonFrom" value="-74.05879" />
+							<property name="latTo" value="40.90105" />
+							<property name="lonTo" value="-73.59394" />
+
+							<!-- Manhattan <property name="latFrom" value="40.698" /> <property 
+								name="lonFrom" value="-74.02" /> <property name="latTo" value="40.86" /> 
+								<property name="lonTo" value="-73.93" /> -->
+							<!-- LaGuardia <property name="latFrom" value="40.71898" /> <property 
+								name="lonFrom" value="-73.93155" /> <property name="latTo" value="40.81142" 
+								/> <property name="lonTo" value="-73.81534" /> -->
+						</bean>
+					</property>
+					<!-- Specify where downloaded OSM data will be cached -->
+					<property name="cacheDirectory" value="./osm-cache" />
+					<property name="downloader">
+						<bean class="org.opentripplanner.openstreetmap.impl.OSMDownloader">
+							<property name="apiBaseUrl" value="http://api.openstreetmap.org/api/0.6/" />
+						</bean>
+					</property>
+				</bean>
+			</list>
+		</property>
+		<property name="defaultWayPropertySetSource">
+			<bean
+				class="org.opentripplanner.graph_builder.impl.osm.DefaultWayPropertySetSource" />
+		</property>
+	</bean>
+
+	<bean id="graphBuilderTask" class="org.opentripplanner.graph_builder.GraphBuilderTask">
+		<property name="path"
+			value="../graphs/greater-nyc/" />
+		<property name="graphBuilders">
+			<list>
+				<ref bean="osmBuilder" />
+			</list>
+		</property>
+	</bean>
+	<!-- <property name="contractionFactor" value="0.992" /> -->
+</beans>
