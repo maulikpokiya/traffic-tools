@@ -191,7 +191,8 @@ function clearMessages(id)
 
 var map;
 
-var cebuUrl = 'http://cebutraffic.org/tiles/{z}/{x}/{y}.png';
+// var cebuUrl = 'http://cebutraffic.org/tiles/{z}/{x}/{y}.png';
+var cebuUrl = 'http://localhost:9000/tiles_avg/{z}/{x}/{y}.png';
 
 var TaxiIcon = L.icon({
 	iconUrl: '/public/images/taxi.png',
