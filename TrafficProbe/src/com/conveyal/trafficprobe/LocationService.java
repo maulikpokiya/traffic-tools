@@ -59,7 +59,8 @@ import android.util.Log;
 public class LocationService extends Service {
 
 
-	public static String 	SERVER 					= "cebutraffic.org"; //"192.168.43.137:9000";
+//	public static String 	SERVER 					= "cebutraffic.org"; //"192.168.43.137:9000";
+	public static String 	SERVER 					= "10.0.2.2:9000";
 	
 	
 	public  static String 	GCM_SENDER_ID 			= "484367360719";
@@ -72,7 +73,8 @@ public class LocationService extends Service {
 	
 	private static String  	WS_LOCATION_URL			= "ws://" + SERVER +"/ws/location";
 	private static String  	HTTP_LOCATION_URL		= "http://" + SERVER +"/api/locationPb";
-	
+//	private static String  	WS_LOCATION_URL			= "ws://10.0.2.2:9001/ws/location";
+//	private static String  	HTTP_LOCATION_URL		= "http://10.0.2.2:9001/api/locationPb";
 	// intents
 	
 	public static String 	DISPLAY_MESSAGE_ACTION	= "com.conveyal.trafficprobe.intent.DISPLAY_MESSAGE_ACTION";
