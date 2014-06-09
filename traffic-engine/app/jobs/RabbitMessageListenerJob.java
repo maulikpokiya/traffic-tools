@@ -22,7 +22,7 @@ public class RabbitMessageListenerJob extends Job {
 		ExecutorService executor = Executors.newFixedThreadPool(3);
 		
 		try {
-		    System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
+//		    System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
 
 		    Channel rabbitChannel = rabbitClient.getRideRequestChannel();
 		    if(rabbitChannel != null) {
@@ -32,10 +32,7 @@ public class RabbitMessageListenerJob extends Job {
 			    while (true) {
 			      QueueingConsumer.Delivery delivery = consumer.nextDelivery();
 			      String message = new String(delivery.getBody());
-			      
-//			      System.out.println(" [x] Received '" + message + "'");
 			      executor.execute(new RabbitMessageWorker(message));
-	//		      System.out.println(" [x] Done");
 			    }
 		    }
 		    else {
