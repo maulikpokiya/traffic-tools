@@ -57,6 +57,8 @@ public class VehicleObservation {
 		med.message = "";
 		med.type = "VehicleObservation";
 		med.geom = GeoUtils.geometryFactory.createPoint(GeoUtils.convertToLonLat(position));
+		// Added for NYC
+		med.id = "" + vehicleId;
 
 		ObjectMapper mapper = new ObjectMapper();
 

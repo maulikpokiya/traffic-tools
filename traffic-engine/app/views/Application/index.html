@@ -47,11 +47,16 @@ function bindPopup(feature, layer) {
 
         var data = JSON.parse(event.data);
         var geoJson = JSON.parse(data.geom);
+//		Added for NYC
+		var id = JSON.parse(data.id);
         
       	if(data.type == "VehicleObservation") {
       	
       		var gj = L.geoJson(geoJson, { style: function (feature) {return {color: "#00f"}; }, pointToLayer : function (featureData, latlng) {
-      			return L.circleMarker(latlng, {radius: 4});
+//              return L.circleMarker(latlng, {radius: 4});
+//				Changed for NYC
+                var popupContent = "" + id + "-" + latlng;
+      			return L.circleMarker(latlng, {radius: 4}).bindPopup(popupContent);
       		}});
       		
       		geoJsonOverlay.addLayer(gj);

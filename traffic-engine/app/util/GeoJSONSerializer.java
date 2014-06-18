@@ -59,6 +59,10 @@ public class GeoJSONSerializer extends JsonSerializer<MapEventData> {
     jgen.writeString(value.message);
     jgen.writeFieldName("geom");
     jgen.writeString(json.toString(value.geom));
+    // Added for NYC
+    jgen.writeFieldName("id");
+    jgen.writeString(value.id);
+    // End of NYC specific code
     jgen.writeEndObject();
     
     

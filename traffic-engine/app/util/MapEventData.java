@@ -10,5 +10,6 @@ public class MapEventData {
 	   public String type;
 	   public String message;
 	   public Geometry geom;
-	   
+	   // Added for NYC
+	   public String id;
 }
