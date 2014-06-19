@@ -176,9 +176,7 @@ public class TrafficGraph {
 				if(e instanceof PlainStreetEdge && !((PlainStreetEdge)e).canTraverse(defaultOptions))
 					continue;
 				
-				// changed for nyc
-//				TrafficEdge te = new TrafficEdge((PlainStreetEdge)e, g.graph, defaultOptions);
-				TrafficEdge te = new TrafficEdge(e, g.graph, defaultOptions);
+				TrafficEdge te = new TrafficEdge((PlainStreetEdge)e, g.graph, defaultOptions);
 				
 				final Geometry geometry = te.getGeometry();
 				if (geometry != null) {
@@ -203,7 +201,7 @@ public class TrafficGraph {
 	
 	public static void save(TrafficGraph g) {
 		
-		g.saveTripLines();
+		//g.saveTripLines();
 		
 		try{
 			 

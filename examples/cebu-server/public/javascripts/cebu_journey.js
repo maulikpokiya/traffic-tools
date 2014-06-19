@@ -300,8 +300,7 @@ function loadStats()
 	
 }
 
-// var overlayUrl = 'http://cebutraffic.org/tiles_avg/{z}/{x}/{y}.png';
-var overlayUrl = 'http://localhost:9000/tiles_avg/{z}/{x}/{y}.png';
+var overlayUrl = 'http://cebutraffic.org/tiles_avg/{z}/{x}/{y}.png';
 var overlay = null;
 
 function updatePath() {
